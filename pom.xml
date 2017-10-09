@@ -22,6 +22,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<githubkohsukelib.version>1.89</githubkohsukelib.version>
+		<log4j.version>1.2.17</log4j.version>
+		<getopt.version>1.0.9</getopt.version>
 	</properties>
 
 	<dependencies>
@@ -35,6 +38,26 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- GitHub Library https://mvnrepository.com/artifact/org.kohsuke/github-api -->
+		<dependency>
+		    <groupId>org.kohsuke</groupId>
+		    <artifactId>github-api</artifactId>
+		    <version>${githubkohsukelib.version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		    <version>${log4j.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>urbanophile</groupId>
+			<artifactId>java-getopt</artifactId>
+			<version>${getopt.version}</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
