@@ -6,14 +6,16 @@
 
 *githubreports* is a Maven project so,
 
-1. Clone the synapticextravaganza GitHub repo at https://github.com/synapticextravaganza/githubreports. 
-2. Execute `mvn clean package`.
+1. Clone the synapticextravaganza GitHub repo from https://github.com/synapticextravaganza/githubreports to a local directory. 
+2. In that local directory execute `mvn clean package`.
+
+This will create an executable JAR file in the "target" directory just subordinate to the local directory. 
 
 ## How to Run *githubreports*
 
 *githubreports* relies upon three required command line arguments for GitHub login (-l), organization (-o), and password (-p). Note that a Git Hub Personal User Access Token (PUAT) can be used in place of a password. Note that the GitHub login user must be a member of the given GitHub organization. 
 
-`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_REGION` environment variables are used to configure both AWS Simple Email Service (SES) and Simple Storage Service (S3). The only other configuration necessary is to create an S3 bucket named, `oitskilleval` in the `AWS_REGION` and account associated with `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`. I would have made the S3 bucket name configurable and created the bucket dynamically but limited time didn't allow that convenience. Note that SES is only available in the following AWS regions:
+*githubreports* also relies upon three required AWS environment variables, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_REGION`. These variables provide configuration for both the AWS Simple Email Service (SES) and the Simple Storage Service (S3). The only other configuration necessary is to create an S3 bucket named, `oitskilleval` in the `AWS_REGION` and account associated with `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`. I would have made the S3 bucket name configurable and created the bucket dynamically but limited time didn't allow that convenience. Note that SES is only available in the following AWS regions:
 
 * us-east-1 (N. Virginia)
 * us-west-2 (Oregon)
@@ -25,9 +27,11 @@
 * `AWS_SECRET_ACCESS_KEY`=+VDPgpo5QSPAehd1m9cPnXTmSc7BZxQl
 * `AWS_REGION`=us-west-2
 
-Just in case you were wondering, none of the keys, secrets, or passwords in these examples are real. Change (cd) to the "target" directory and execute the following command to run the application:
+Just in case you were wondering, none of the keys, secrets, or passwords in these examples are real. Change directory (cd) to the "target" directory and execute the following command to run the application:
 
 `java -jar githubreports-0.0.1-SNAPSHOT.jar -lferdfarkle -osynapticextravaganza -pa19356794d4basdfbb3139d1ae2b9agjd27b5d6h5b`
+
+I've provided a script, **"RunOnWindows.bat"**, in the root "githubreports" directory of the project to make this setup and execution easier. 
 
 ## What's the S3 Object (file) Look Like?
 
