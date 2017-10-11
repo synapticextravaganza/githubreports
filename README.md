@@ -1,6 +1,6 @@
 # Synaptic Extravaganza Presents: *githubreports*
 
-*githubreports* is a Java 8 program that reads all user profiles (public and private) for a given GitHub organization and sends e-mails to organization members who don't have a public profile name, but who do have a public e-mail address. In addition, a file is written to an Amazon Web Services (AWS) S3 bucket containing the GitHub login of the nameless organization members. If a nameless member does not have a public e-mail address, no e-mail can be sent. No worries, even these secretive souls are identified in the file written to S3. Many thanks for allowing me the opportunity to demonstrate a few of my software engineering skills for you.
+*githubreports* is a Java 8 program that reads all user profiles (public and private) for a given GitHub organization and sends e-mails to organization members who don't have a public profile name, but who do have a public e-mail address. In addition, a file is written to an Amazon Web Services (AWS) S3 bucket containing the GitHub login of the nameless organization members. If a nameless member does not have a public e-mail address, no e-mail can be sent. No worries, even these secretive souls are identified in the file written to S3.
 
 ## How to Build *githubreports*
 
