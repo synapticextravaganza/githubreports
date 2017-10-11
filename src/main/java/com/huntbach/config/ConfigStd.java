@@ -44,7 +44,7 @@ public class ConfigStd implements Config
 	private String emailHtmlBody =
 			"<h1>Hi, so sorry to bother you but did you know that your name is missing in your \"{{login}}\" GitHub profile?</h1>"
 			+ "<p>"
-			+ "'ll take you to your profile if you'll just click <a href='https://github.com/settings/profile'>here</a>."
+			+ "I'll take you to your profile if you'll just click <a href='https://github.com/settings/profile'>here</a>."
 			+ "<p>"
 			+ "<h3>Thank you very much!</h3>";
 	
