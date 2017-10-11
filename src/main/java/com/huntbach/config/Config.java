@@ -9,5 +9,10 @@ package com.huntbach.config;
  */
 public interface Config
 {
-	boolean processCommandLineArguments( String... args ) throws IllegalArgumentException;
+	public boolean processCommandLineArguments( String... args ) throws IllegalArgumentException;
+	
+	default public boolean isValid()
+	{
+		return true;
+	}
 }

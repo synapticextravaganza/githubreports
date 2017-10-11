@@ -111,10 +111,10 @@ public class ConfigGitHub implements Config
 	}	
 
 	/**
-	 * Determines whether the current GitHub configuration is valid.
+	 * Determines whether the current configuration is valid.
 	 * @return <code>true</code> if valid; otherwise, <code>false</code>.
 	 */
-	protected boolean isValid()
+	public boolean isValid()
 	{
 		boolean isConfigValid = true;
 		

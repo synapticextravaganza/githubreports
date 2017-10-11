@@ -27,22 +27,14 @@ public class ConfigStd implements Config
 	 * Examples of Spring Externalized Configuration and Spring property value injection
 	 */
 	
-	@Value("${email_from}")
-	private String email_from;
-	
-	@Value("${email_subject}")
-	private String email_subject;
+	private static final String DEFAULT_EMAIL_FROM = "huntbach@comcast.net";
+	@Value("${email_from:huntbach@comcast.net}")
+	private String emailFrom = ConfigStd.DEFAULT_EMAIL_FROM;
 
-	/**
-	 * Bucket in which the nameless user file is stored.
-	 */
-	public static final String AWS_S3_BUCKET_NAME = "oitskilleval";
-	
-	/*
-	 * File (S3 key) in which the nameless user file is stored.
-	 */
-	public static final String NAMELESS_USER_FILENAME = "NamelessUsers.txt";
-	
+	private static final String DEFAULT_EMAIL_SUBJECT = "GitHub Profile Name Missing";
+	@Value("${email_subject:GitHub Profile Name Missing}")
+	private String emailSubject = ConfigStd.DEFAULT_EMAIL_SUBJECT;
+
 	/*
 	 * frogger -- If there's time, read the e-mail bodies from files in src/main/resources.
 	 */
@@ -66,6 +58,7 @@ public class ConfigStd implements Config
     	+ "Thank you very much!";
 
 	private ConfigGitHub gitHubConfig = null;
+	private ConfigAWS awsConfig = null;
 	
 	/**
 	 * Creates a configuration object that contains all configuration for the application.
@@ -73,25 +66,35 @@ public class ConfigStd implements Config
 	public ConfigStd()
 	{
 		this.gitHubConfig = new ConfigGitHub();
+		this.awsConfig = new ConfigAWS();
 	}
 	
 	/**
 	 * Runs the command line through all command line processors.
-	 * @return <code>true</code> on success; otherwise, <code>false</code>.
+	 * @return <code>true</code> on success; otherwise, if any of the processors fails, <code>false</code>.
 	 */
 	public boolean processCommandLineArguments( String...args ) throws IllegalArgumentException
 	{
-		if( this.gitHubConfig.processCommandLineArguments( args ) == false ) 
-		{
-			return false;
-		}
+		boolean isSuccessful = true;
 		
-		if( this.gitHubConfig.isValid() == false )
-		{
-			return false;
-		}
+		isSuccessful &= this.gitHubConfig.processCommandLineArguments( args );
+		isSuccessful &= this.awsConfig.processCommandLineArguments( args );
 		
-		return true;
+		return isSuccessful;
+	}
+	
+	/**
+	 * Calls <code>isValid()</code> on all configuration modules.
+	 * @return <code>true</code> on success; otherwise, if any of the validatons fails, <code>false</code>.
+	 */
+	public boolean isValid()
+	{
+		boolean isSuccessful = true;
+
+		isSuccessful &= this.gitHubConfig.isValid();
+		isSuccessful &= this.awsConfig.isValid();
+		
+		return isSuccessful;
 	}
 	
 	/**
@@ -143,12 +146,12 @@ public class ConfigStd implements Config
 	
 	public String getEmailFrom()
 	{
-		return email_from;
+		return emailFrom;
 	}
 
 	public String getEmailSubject()
 	{
-		return email_subject;
+		return emailSubject;
 	}
 
 	public String getEmailHtmlBody()
@@ -164,5 +167,10 @@ public class ConfigStd implements Config
 	public ConfigGitHub getGitHubConfig()
 	{
 		return gitHubConfig;
+	}
+
+	public ConfigAWS getAwsConfig()
+	{
+		return awsConfig;
 	}
 }

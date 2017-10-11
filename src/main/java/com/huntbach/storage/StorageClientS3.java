@@ -29,7 +29,7 @@ public class StorageClientS3 implements StorageClient
 	}
 	
 	/**
-	 * Creates, or recreates, a file and writes the given file contents to it. The contents are UTF-8 encoded.
+	 * Creates, or recreates (overwrites), a file and writes the given file contents to it. The contents are UTF-8 encoded.
 	 * <p>
 	 * <b>
 	 * If this were a production system all calls to AWS would retry HTTP Status Codes and Java exceptions:
