@@ -13,7 +13,11 @@
 
 *githubreports* relies upon three required command line arguments for GitHub login (-l), organization (-o), and password (-p). Note that a Git Hub Personal User Access Token (PUAT) can be used in place of a password. Note that the GitHub login user must be a member of the given GitHub organization. 
 
-`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_REGION` environment variables are used to configure both AWS Simple Email Service (SES) and Simple Storage Service (S3). The only other configuration is to create an S3 bucket named, `oitskilleval` in the `AWS_REGION` and account associated with `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`. I would have made the S3 bucket name configurable and created the bucket dynamically but limited time didn't allow that convenience.
+`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_REGION` environment variables are used to configure both AWS Simple Email Service (SES) and Simple Storage Service (S3). The only other configuration necessary is to create an S3 bucket named, `oitskilleval` in the `AWS_REGION` and account associated with `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`. I would have made the S3 bucket name configurable and created the bucket dynamically but limited time didn't allow that convenience. Note that SES is only available in the following AWS regions:
+
+* us-east-1 (N. Virginia)
+* us-west-2 (Oregon)
+* eu-west-1 (Ireland)
 
 ###### Sample AWS Environment Variable Values
 
