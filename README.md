@@ -21,9 +21,9 @@
 * `AWS_SECRET_ACCESS_KEY`=+VDPgpo5QSPAehd1m9cPnXTmSc7BZxQl
 * `AWS_REGION`=us-west-2
 
-Just in case you were wondering, none of the keys, secrets, or passwords in these examples are real. Execute the following command to run the application:
+Just in case you were wondering, none of the keys, secrets, or passwords in these examples are real. Change (cd) to the "target" directory and execute the following command to run the application:
 
-`java -jar githubreports-1.0.0.jar -lferdfarkle -osynapticextravaganza -pa19356794d4basdfbb3139d1ae2b9agjd27b5d6h5b`
+`java -jar githubreports-0.0.1-SNAPSHOT.jar -lferdfarkle -osynapticextravaganza -pa19356794d4basdfbb3139d1ae2b9agjd27b5d6h5b`
 
 ## What's the S3 Object (file) Look Like?
 
