@@ -29,7 +29,7 @@ This will create an executable JAR file in the "target" directory just subordina
 
 Just in case you were wondering, none of the keys, secrets, or passwords in these examples are real. Change directory (cd) to the "target" directory and execute the following command to run the application:
 
-`java -jar githubreports-0.0.1-SNAPSHOT.jar -lferdfarkle -osynapticextravaganza -pa19356794d4basdfbb3139d1ae2b9agjd27b5d6h5b`
+`java -jar githubreports-1.0.0.jar -lferdfarkle -osynapticextravaganza -pa19356794d4basdfbb3139d1ae2b9agjd27b5d6h5b`
 
 I've provided a script, **"RunOnWindows.bat"**, in the root "githubreports" directory of the project to make this setup and execution easier. 
 
