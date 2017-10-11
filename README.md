@@ -42,17 +42,28 @@ huntbachdj missing profile name. No public e-mail address.
 nonamesam missing profile name. Email sent to d1withemail@gmail.com.
 ```
 
+## What's the E-Mail Look Like?
+
+There are HTML and text versions of the e-mail message. Each message is personalized with the GitHub user's login. The messages contain a link to the recipient's GitHub profile and look substantially like the following: 
+
+<h4>Hi, so sorry to bother you but did you know that your name is missing in your "nonamesam" GitHub profile?</h4>
+<p>
+I'll take you to your profile if you'll just click <a href='https://github.com/settings/profile'>here</a>.
+<p>
+<h6>Thank you very much!</h6>
+
 ## Features of *githubreports*
 
-1. JUnit unit tests with JMockit mocking.
-2. Interfaces for all libraries that could support multiple implementations.
-3. Fluent builder pattern used where it made sense.
-4. Lambda functions.
-5. Interfaces with default methods.
-6. Immutable data classes.
-7. Uses AWS Simple Email Service in addition to S3.
-8. Takes advantage of Open Source GitHub library (kohsuke).
-9. Written in a very short time. I received the assignment Friday evening. Saturday was my birthday. I didn't work on it on the Sabbath. Monday I had a root canal. Tuesday and Wednesday I was attending a conference.
+1. Based on Spring Boot command line starter.
+2. JUnit unit tests with JMockit mocking.
+3. Interfaces for all libraries that could support multiple implementations.
+4. Fluent builder pattern used where it made sense.
+5. Lambda functions.
+6. Interfaces with default methods.
+7. Immutable data classes.
+8. Uses AWS Simple Email Service in addition to S3.
+9. Takes advantage of Open Source GitHub library (kohsuke).
+10. Written in a very short time. I received the assignment Friday evening. Saturday was my birthday. I didn't work on it on the Sabbath. Monday I had a root canal. Tuesday and Wednesday I was attending a conference. Submitted early Wednesday morning.
 
 ## Assumptions
 
