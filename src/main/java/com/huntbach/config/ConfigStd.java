@@ -2,7 +2,7 @@
  * Copyright (c) David J. Huntbach, All Rights Reserved.
  */
 
-package com.huntbach.githubreports;
+package com.huntbach.config;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,14 +13,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 import com.amazonaws.util.IOUtils;
+import com.huntbach.githubreports.GithubreportsApplication;
 
 /*
  * Application configuration object. Immutable once the Initialize method returns.
  */
 @Configuration
-public class Config
+public class ConfigStd implements Config
 {
-	private static Logger logger = Logger.getLogger( Config.class );
+	private static Logger logger = Logger.getLogger( ConfigStd.class );
 	
 	/*
 	 * Examples of Spring Externalized Configuration and Spring property value injection
@@ -31,42 +32,56 @@ public class Config
 	
 	@Value("${email_subject}")
 	private String email_subject;
+
+	/**
+	 * Bucket in which the nameless user file is stored.
+	 */
+	public static final String AWS_S3_BUCKET_NAME = "oitskilleval";
 	
 	/*
-	 * frogger -- If there's time read the e-mail bodies from files in src/main/resources.
+	 * File (S3 key) in which the nameless user file is stored.
+	 */
+	public static final String NAMELESS_USER_FILENAME = "NamelessUsers.txt";
+	
+	/*
+	 * frogger -- If there's time, read the e-mail bodies from files in src/main/resources.
 	 */
 	
 	@SuppressWarnings( "unused" )
 	private static final String EMAIL_HTML_BODY_FILENAME = "emailBody.html";
-	private String emailHtmlBody;
+	private String emailHtmlBody =
+			"<h1>Hi, so sorry to bother you but did you know that your name is missing in your \"{{login}}\" GitHub profile?</h1>"
+			+ "<p>"
+			+ "'ll take you to your profile if you'll just click <a href='https://github.com/settings/profile'>here</a>."
+			+ "<p>"
+			+ "<h3>Thank you very much!</h3>";
 	
 	@SuppressWarnings( "unused" )
 	private static final String EMAIL_TEXT_BODY_FILENAME = "emailBody.txt";
-	private String emailTextBody;
+	private String emailTextBody =
+    	"Hi, so sorry to bother you but did you know that your name is missing in your \"{{login}}\" GitHub profile?"
+    	+ "\n"
+    	+ "You can go to your profile at https://github.com/settings/profile to add your name."
+    	+ "\n"
+    	+ "Thank you very much!";
 
-	private GitHubConfig gitHubConfig = null;
+	private ConfigGitHub gitHubConfig = null;
 	
 	/**
 	 * Creates a configuration object that contains all configuration for the application.
 	 */
-	public Config()
+	public ConfigStd()
 	{
-		this.gitHubConfig = new GitHubConfig();
+		this.gitHubConfig = new ConfigGitHub();
 	}
 	
 	/**
-	 * Initializes this Config object from values found in the following order:
-	 * <ol>
-	 * <li><code>application.properties</code> file
-	 * <li>environment variables
-	 * <li>command line.
-	 * </ol>
-	 * Hence, command line values supersede any other values.
+	 * Runs the command line through all command line processors.
 	 * @return <code>true</code> on success; otherwise, <code>false</code>.
 	 */
-	public boolean initialize( String...args )
+	public boolean processCommandLineArguments( String...args ) throws IllegalArgumentException
 	{
-		if( this.gitHubConfig.processCommandLineArguments( args ) == false )
+		if( this.gitHubConfig.processCommandLineArguments( args ) == false ) 
 		{
 			return false;
 		}
@@ -75,20 +90,6 @@ public class Config
 		{
 			return false;
 		}
-		
-		this.emailHtmlBody = 
-				"<h1>Hi, so sorry to bother you but did you know that your name is missing in your \"{{login}}\" GitHub profile?</h1>"
-				+ "<p>"
-				+ "'ll take you to your profile if you'll just click <a href='https://github.com/settings/profile'>here</a>."
-				+ "<p>"
-				+ "<h3>Thank you very much!</h3>";
-		
-		this.emailTextBody = 
-				"Hi, so sorry to bother you but did you know that your name is missing in your \"{{login}}\" GitHub profile?"
-				+ "\n"
-				+ "You can go to your profile at https://github.com/settings/profile to add your name."
-				+ "\n"
-				+ "Thank you very much!";
 		
 		return true;
 	}
@@ -160,7 +161,7 @@ public class Config
 		return emailTextBody;
 	}
 
-	public GitHubConfig getGitHubConfig()
+	public ConfigGitHub getGitHubConfig()
 	{
 		return gitHubConfig;
 	}

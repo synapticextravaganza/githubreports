@@ -2,7 +2,7 @@
  * Copyright (c) 2017, David J. Huntbach, All Rights Reserved.
  */
 
-package com.huntbach.githubreports;
+package com.huntbach.config;
 
 import org.apache.log4j.Logger;
 
@@ -12,9 +12,9 @@ import gnu.getopt.Getopt;
  * This class manages GitHub configuration properties.
  * This class is mostly immutable. It can only be changed by processCommandLineArguments.
  */
-public class GitHubConfig
+public class ConfigGitHub implements Config
 {
-	private static Logger logger = Logger.getLogger( GitHubConfig.class );
+	private static Logger logger = Logger.getLogger( ConfigGitHub.class );
 	
 	private String organization = null;
 	private String login = null;
@@ -26,7 +26,7 @@ public class GitHubConfig
 	 * @return <code>true</code> on success; otherwise, <code>false</code>.
 	 * @throws IllegalArgumentException If <code>args</code> parameter is <code>null</code>.
 	 */
-	protected boolean processCommandLineArguments( String... args ) throws IllegalArgumentException
+	public boolean processCommandLineArguments( String... args ) throws IllegalArgumentException
 	{
 		/*
 		 * Validate parameter
@@ -52,7 +52,7 @@ public class GitHubConfig
 		 * argument. This allows the caller to distinguish between invalid options and valid options
 		 * that are simply incomplete.
 		 */
-		Getopt g = new Getopt( GitHubConfig.class.getSimpleName(), args, "l:o:p:h" );
+		Getopt g = new Getopt( ConfigGitHub.class.getSimpleName(), args, "l:o:p:h" );
 		int c;
 
 		
@@ -62,7 +62,7 @@ public class GitHubConfig
 			switch( c )
 			{
 			case 'h':
-				Config.usage();
+				ConfigStd.usage();
 				isSuccessful = false;	// just exit once -h is encountered
 				break GetOptLoop;
 

@@ -21,13 +21,15 @@ import com.amazonaws.services.simpleemail.model.SendEmailRequest;
  */
 public class EmailClientAWS implements EmailClient
 {
-	private static Logger logger = Logger.getLogger( EmailClientAWS.class );
+	// "protected" for unit testing
+	protected static Logger logger = Logger.getLogger( EmailClientAWS.class );
 
 	/**
 	 * Immutable AWS SES client used with this instance.
 	 * Initialized in the class constructor.
+	 * Note: "protected" solely for unit testing.
 	 */
-	private AmazonSimpleEmailService sesClient;
+	protected AmazonSimpleEmailService sesClient;
 	
 	/**
 	 * Creates a AmazonSimpleEmailServiceClient initialized with standard defaults.
@@ -53,7 +55,16 @@ public class EmailClientAWS implements EmailClient
 		}
 	}
 
-	public void send( String from, String to, String subject, String htmlBody, String textBody ) // throws IOException
+	/**
+	 * Sends an e-mail.
+	 * @param from - Sender e-mail address, e.g., samiam@byu.edu.
+	 * @param to - Recipient e-mail address.
+	 * @param subject - E-mail subject.
+	 * @param htmlBody - HTML formatted message body.
+	 * @param textBody - Plain text formatted message body.
+	 * @return <code>true</code> on success; otherwise, <code>false</code>.
+	 */
+	public boolean send( String from, String to, String subject, String htmlBody, String textBody ) // throws IOException
 	{
 		/*
 		 * Validate parameters
@@ -84,11 +95,16 @@ public class EmailClientAWS implements EmailClient
   							)
 					);
 			
+			// if there were more time, the email result should be evaluated and handled
+			// SendEmailResult result = sesClient.sendEmail( request );
 			sesClient.sendEmail( request );
 		}
-		catch( Exception e )
+		catch( Exception e )		// normally I don't like to catch "naked" Exception, I'm rushing the writting of this code
 		{
 			logger.error( "Email could not be sent.", e );
+			return false;
 		}
+		
+		return true;
 	}
 }

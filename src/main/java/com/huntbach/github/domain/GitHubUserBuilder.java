@@ -9,9 +9,10 @@ package com.huntbach.github.domain;
  */
 public class GitHubUserBuilder
 {
-	private String login;
-	private String name;
-	private String email;
+	// Note: The member vars are protected to allow unit tests to access them.
+	protected String login;
+	protected String name;
+	protected String email;
 	
 	public GitHubUserBuilder setLogin( String gitHubUserLogin )
 	{

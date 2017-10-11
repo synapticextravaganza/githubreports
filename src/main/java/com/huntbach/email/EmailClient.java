@@ -23,8 +23,9 @@ public interface EmailClient
 	 * @param subject - E-mail subject.
 	 * @param htmlBody - HTML formatted message body.
 	 * @param textBody - Plain text formatted message body.
+	 * @return <code>true</code> on success; otherwise, <code>false</code>.
 	 */
-	public void send( String from, String to, String subject, String htmlBody, String textBody );
+	public boolean send( String from, String to, String subject, String htmlBody, String textBody );
 	
 	/**
 	 * Default implementation for a template tag substitution method. This method replaces all occurrences
