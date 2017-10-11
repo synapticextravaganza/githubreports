@@ -44,7 +44,7 @@ nonamesam missing profile name. Email sent to d1withemail@gmail.com.
 6. Immutable data classes.
 7. Uses AWS Simple Email Service in addition to S3.
 8. Takes advantage of Open Source GitHub library (kohsuke).
-9. Written in a very short time. I received the assignment Friday evening. Saturday was my birthday. I didn't work on it on the Sabbath. Monday I had a root canal. Tuesday and Wednesday I was attending a conference. I submitted it Tuesday night.
+9. Written in a very short time. I received the assignment Friday evening. Saturday was my birthday. I didn't work on it on the Sabbath. Monday I had a root canal. Tuesday and Wednesday I was attending a conference.
 
 ## Assumptions
 
